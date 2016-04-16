@@ -9,7 +9,7 @@ struct data1 {
 
 struct data1 d1[3];
 
-void makeModel1(){
+void makeModel1() {
   int i = 0;
   for(i = 0; i < 3; i++) {
     d1[i].a = i + 1;
@@ -17,7 +17,7 @@ void makeModel1(){
   }
 }
 
-void callback(LIST listObject) { // callback function to parse and do things with the list elements.
+void callback(LIST listObject) { // callback function to parse and do things with the list elements... delegation that is to say
   int count = 0;
   struct data1 *r1 = (struct data1 *)listObject.getter(&listObject);
   for(count = 0; count < 3; count++) {

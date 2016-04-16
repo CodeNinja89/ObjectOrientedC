@@ -8,7 +8,10 @@ struct _hidden {
 
 typedef struct _hidden LIST;
 
-void psuedoConstructor(char *data, struct _hidden *this, void(*callback)(struct _hidden)) {this->data = data; this->iterator = callback;}
+void psuedoConstructor(char *data, struct _hidden *this, void(*callback)(struct _hidden)) {
+  this->data = data;
+  this->iterator = callback; // delegation
+}
 size_t size(struct _hidden *this) {return sizeof(this->data);}
 char* getter(struct _hidden *this) {return this->data;}
 
