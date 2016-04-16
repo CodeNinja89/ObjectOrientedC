@@ -7,13 +7,7 @@ struct data1 {
   char *name;
 };
 
-struct data2 {
-  float a;
-  double b;
-};
-
 struct data1 d1[3];
-struct data2 d2[3];
 
 void makeModel1(){
   int i = 0;
@@ -23,24 +17,18 @@ void makeModel1(){
   }
 }
 
-void makeModel2(){
-  int i = 0;
-  for(i = 0; i < 3; i++) {
-    d2[i].a = i + 2;
-    d2[i].b = i * 0.235;
+void forType1(LIST listObject) { // callback function to parse and do things with the list elements.
+  int count = 0;
+  struct data1 *r1 = (struct data1 *)listObject.getter(&listObject);
+  for(count = 0; count < 3; count++) {
+    printf("%s, %d\n", r1[count].name, r1[count].a);
   }
 }
 
 int main() {
   LIST(l1); // generic data type list.
-  LIST(l2);
-  makeModel1(); // demo model... model can come from anywhere
-  makeModel2(); // demo model... model can be any thing
-  l1.constructor((char *)&d1, &l1); // must send a reference to self
-  l2.constructor((char *)&d2, &l2);
-  struct data1 *r1 = (struct data1 *)l1.getter(&l1);
-  printf("%s, %d\n", r1[2].name, r1[1].a);
-  struct data2 *r2 = (struct data2 *)l2.getter(&l2);
-  printf("%f, %f\n", r2[2].b, r2[1].a);
+  makeModel1(); // demo model...
+  l1.constructor((char *)&d1, &l1, &forType1); // must send a reference to self
+  l1.iterator(l1);
   return 0;
 }
