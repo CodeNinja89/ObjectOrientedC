@@ -17,7 +17,7 @@ void makeModel1(){
   }
 }
 
-void forType1(LIST listObject) { // callback function to parse and do things with the list elements.
+void callback(LIST listObject) { // callback function to parse and do things with the list elements.
   int count = 0;
   struct data1 *r1 = (struct data1 *)listObject.getter(&listObject);
   for(count = 0; count < 3; count++) {
@@ -28,7 +28,7 @@ void forType1(LIST listObject) { // callback function to parse and do things wit
 int main() {
   LIST(l1); // generic data type list.
   makeModel1(); // demo model...
-  l1.constructor((char *)&d1, &l1, &forType1); // must send a reference to self
+  l1.constructor((char *)&d1, &l1, &callback); // must send a reference to self
   l1.iterator(l1);
   return 0;
 }
